@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function PageNav() {
   return (
-    <div className="py-6 flex flex-row mx-42 mt-32">
+    <div className="py-6 flex flex-row xl:mx-42 mx-9 lg:mt-32 mt-20 max-lg:justify-center">
       <div className="flex flex-row items-center gap-[15px] py-2.5">
         <p className="font-bold">Home</p>
         <Image

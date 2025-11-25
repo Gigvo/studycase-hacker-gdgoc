@@ -23,17 +23,20 @@ export default async function BookDetails() {
   const bookImage = book.cover_image;
 
   return (
-    <section className="mx-40 flex flex-row gap-7.5 justify-center">
-      <div className="w-1/2">
-        <Carousel className="relative w-127 h-119">
+    <section
+      className="xl:mx-40 mx-8 flex lg:flex-row flex-col lg:gap-7.5 gap-15 justify-center items-center"
+      id="book-details"
+    >
+      <div className="lg:w-1/2 lg:self-start">
+        <Carousel className="relative xl:w-127 xl:h-119 sm:w-100 sm:h-90 w-78 h-68">
           <CarouselContent>
-            <CarouselItem>
+            <CarouselItem className="flex justify-center items-center">
               <BookDisplay bookImage={bookImage} />
             </CarouselItem>
-            <CarouselItem>
+            <CarouselItem className="flex justify-center items-center">
               <BookDisplay bookImage={bookImage} />
             </CarouselItem>
-            <CarouselItem>
+            <CarouselItem className="flex justify-center items-center">
               <BookDisplay bookImage={bookImage} />
             </CarouselItem>
           </CarouselContent>
@@ -41,16 +44,16 @@ export default async function BookDetails() {
           <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 bg-transparent border-none" />
         </Carousel>
       </div>
-      <div className="w-1/2">
+      <div className="lg:w-1/2">
         {book.tags && book.tags.length > 0 && (
           <div className="flex flex-row gap-4 justify-start">
             {book.tags[0]?.name && (
-              <p className="bg-[#E0E0E0] px-4 py-1 rounded-[40px]">
+              <p className="bg-[#E0E0E0] px-4 py-1 rounded-[40px] text-[16px] font-medium">
                 {book.tags[0].name}
               </p>
             )}
             {book.tags[1]?.name && (
-              <p className="bg-[#E0E0E0] px-4 py-1 rounded-[40px]">
+              <p className="bg-[#E0E0E0] px-4 py-1 rounded-[40px] text-[16px] font-medium">
                 {book.tags[1].name}
               </p>
             )}

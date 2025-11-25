@@ -18,12 +18,14 @@ export default async function ReadingList() {
   const books = await fetchMultipleBooks(4);
 
   return (
-    <section className="mx-40 mt-24">
-      <p className="text-[32px] font-semibold">Your Reading List</p>
+    <section className="xl:mx-40 mx-8 mt-24" id="your-reading-list">
+      <p className="text-[32px] font-semibold max-md:text-center">
+        Your Reading List
+      </p>
       <hr className="my-6 border-gray-200 border" />
-      <div className="flex flex-row  gap-7.5 justify-between">
+      <div className="flex flex-row  gap-7.5 justify-between overflow-x-scroll items-stretch">
         {books.map((book, index) => (
-          <div key={`${book.cover_image}-${index}`}>
+          <div key={`${book.cover_image}-${index}`} className="flex flex-col">
             <div className="w-60 h-70 bg-gray-300 flex items-center justify-center">
               <Image
                 src={book.cover_image}
@@ -34,7 +36,7 @@ export default async function ReadingList() {
               />
             </div>
 
-            <div className="flex flex-col gap-2.5 p-[25px] items-start bg-white w-60 h-50">
+            <div className="flex flex-col gap-2.5 p-[25px] items-start bg-white w-60 flex-1">
               <p className="font-semibold text-[16px]">{book.title}</p>
               {book.category.name && (
                 <p className="font-semibold text-[14px] text-[#737373]">
