@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import {
   Carousel,
@@ -12,15 +14,84 @@ import { Button } from "./ui/button";
 
 export const revalidate = 3600;
 
-export default async function BookDetails() {
-  const data = await fetch(
-    "https://bukuacak-9bdcb4ef2605.herokuapp.com/api/v1/random_book?"
-    // {
-    //   next: { revalidate: 3600 },
-    // }
-  );
-  const book = await data.json();
-  const bookImage = book.cover_image;
+interface BookData {
+  _id: string;
+  title: string;
+  cover_image: string;
+  author: {
+    name: string;
+  };
+  category: {
+    name: string;
+  };
+  summary: string;
+  tags?: Array<{ name: string }>;
+  details: {
+    price: string;
+    total_pages: number;
+    isbn: string;
+    published_date: string;
+  };
+  publisher: string;
+}
+
+export default function BookDetails() {
+  const [book, setBook] = useState<BookData | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchRandomBook = async () => {
+      try {
+        const res = await fetch(
+          "https://bukuacak-9bdcb4ef2605.herokuapp.com/api/v1/random_book?"
+        );
+        const data = await res.json();
+        setBook(data);
+      } catch (err) {
+        console.error("Failed to get random book ", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRandomBook();
+  }, []);
+
+  useEffect(() => {
+    const handleSelectedBook = (event: CustomEvent<BookData>) => {
+      setBook(event.detail);
+    };
+
+    window.addEventListener(
+      "bookSelected",
+      handleSelectedBook as EventListener
+    );
+
+    return () => {
+      window.removeEventListener(
+        "bookSelected",
+        handleSelectedBook as EventListener
+      );
+    };
+  });
+
+  if (loading) {
+    return (
+      <div className="text-center text-black">
+        <p>Loading...</p>
+      </div>
+    );
+  }
+
+  if (!book) {
+    return (
+      <div className="text-black text-center">
+        <p>No Book available</p>
+      </div>
+    );
+  }
+
+  const bookImage = book?.cover_image;
 
   return (
     <section

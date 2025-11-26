@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import SearchButton from "./search-bar";
 
 import {
   NavigationMenu,
@@ -118,15 +119,11 @@ export default function Navbar() {
             <p>Contact</p>
             <p>Pages</p>
           </div>
-          <div className="flex flex-row max-lg:hidden">
+          <div className="flex flex-row max-lg:hidden items-center">
             <p className="text-[#23A6F0] p-[15px]">Login / Register</p>
-            <Image
-              src={"/blue-search-icon.svg"}
-              alt="blue search icon"
-              width={16}
-              height={16}
-              className="m-[15px]"
-            ></Image>
+            <button onClick={() => setMobileOpen(false)}>
+              <SearchButton />
+            </button>
             <div className="p-[15px] flex flex-row text-[#23A6F0] text-xs gap-[5px] items-center font-normal">
               <Image
                 src={"/blue-cart-icon.svg"}
@@ -151,7 +148,11 @@ export default function Navbar() {
 
         <div
           className={`flex flex-col items-center bg-white transition-all duration-200 ease-in-out lg:hidden z-50
-            ${mobileOpen ? "max-h-screen py-4" : "max-h-0 overflow-hidden"}
+            ${
+              mobileOpen
+                ? "max-h-screen py-4"
+                : "max-h-0 opacity-0 overflow-hidden"
+            }
             `}
         >
           <div className="flex flex-col gap-3.75 text-[#737373] items-center text-[14px] lg:hidden">
@@ -164,13 +165,8 @@ export default function Navbar() {
           </div>
           <div className="flex flex-col items-center lg:hidden">
             <p className="text-[#23A6F0] p-[15px]">Login / Register</p>
-            <Image
-              src={"/blue-search-icon.svg"}
-              alt="blue search icon"
-              width={16}
-              height={16}
-              className="m-[15px]"
-            ></Image>
+            <SearchButton />
+
             <div className="p-[15px] flex flex-row text-[#23A6F0] text-xs gap-[5px] items-center font-normal">
               <Image
                 src={"/blue-cart-icon.svg"}
