@@ -98,7 +98,7 @@ export default function Navbar() {
                     <ul className="grid w-[200px] gap-4">
                       <li>
                         <NavigationMenuLink asChild>
-                          <Link href="#book-details">Book Details</Link>
+                          <Link href="">Book Details</Link>
                         </NavigationMenuLink>
                         <NavigationMenuLink asChild>
                           <Link href="#your-reading-list">
