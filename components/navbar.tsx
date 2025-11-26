@@ -121,9 +121,9 @@ export default function Navbar() {
           </div>
           <div className="flex flex-row max-lg:hidden items-center">
             <p className="text-[#23A6F0] p-[15px]">Login / Register</p>
-            <button onClick={() => setMobileOpen(false)}>
-              <SearchButton />
-            </button>
+
+            <SearchButton />
+
             <div className="p-[15px] flex flex-row text-[#23A6F0] text-xs gap-[5px] items-center font-normal">
               <Image
                 src={"/blue-cart-icon.svg"}
@@ -165,7 +165,9 @@ export default function Navbar() {
           </div>
           <div className="flex flex-col items-center lg:hidden">
             <p className="text-[#23A6F0] p-[15px]">Login / Register</p>
-            <SearchButton />
+            <button onClick={() => setMobileOpen(false)}>
+              <SearchButton />
+            </button>
 
             <div className="p-[15px] flex flex-row text-[#23A6F0] text-xs gap-[5px] items-center font-normal">
               <Image
